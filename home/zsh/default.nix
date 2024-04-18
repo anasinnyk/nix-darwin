@@ -22,6 +22,7 @@
         "copybuffer"
         "docker-compose"
         "docker"
+        "direnv"
         "dotenv"
         "encode64"
         "fluxcd"
