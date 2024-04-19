@@ -13,7 +13,6 @@ return {
   { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.yaml" },
-  { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.motion.mini-move" },
   { import = "astrocommunity.motion.mini-ai" },

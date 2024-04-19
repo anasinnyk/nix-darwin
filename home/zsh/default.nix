@@ -51,6 +51,7 @@
     sessionVariables = {
       ZSH_TMUX_AUTOSTART = false;
       ZSH_TMUX_AUTOCONNECT = false;
+      ZSH_DOTENV_PROMPT = false;
     };
   };
 }

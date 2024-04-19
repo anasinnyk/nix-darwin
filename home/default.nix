@@ -24,6 +24,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    DIRENV_LOG_FORMAT = "";
   };
 
   programs = {
