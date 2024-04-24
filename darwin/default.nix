@@ -40,6 +40,7 @@
       "loom"
       "orbstack"
       "keycastr"
+      "via"
     ];
   };
 }

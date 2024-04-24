@@ -12,6 +12,11 @@
       "top" = "btop";
       "grep" = "rg";
     };
+    plugins = [{
+      name = "zsh-vi-mode";
+      src = pkgs.zsh-vi-mode;
+      file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+    }];
     "oh-my-zsh" = {
       enable = true;
       plugins = [
@@ -41,7 +46,6 @@
         "redis-cli"
         "qrcode"
         "rust"
-        "starship"
         "sudo"
         "terraform"
         "yarn"
