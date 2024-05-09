@@ -2,6 +2,7 @@
 {
   imports = [
     ./wezterm
+    ./alacritty
     ./zsh
     ./tmux
     ./starship
