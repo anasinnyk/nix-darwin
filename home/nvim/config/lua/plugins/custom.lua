@@ -9,11 +9,11 @@ return {
 					or "<Plug>(comment_toggle_linewise_count)"
 			end, { expr = true, desc = "Comment current code line(s)" })
 			vim.keymap.set("x", "<leader>/", function()
-				print(vim.fn.visualmode())
-				print(vim.fn.visualmode())
-				return vim.fn.visualmode() == "V"
-						and '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>'
-					or '<ESC><CMD>lua require("Comment.api").locked("toggle.blockwise")(vim.fn.visualmode())<CR>'
+				if vim.fn.mode() == "V" then
+					return '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>'
+				else
+					return '<ESC><CMD>lua require("Comment.api").locked("toggle.blockwise")(vim.fn.visualmode())<CR>'
+				end
 			end, { expr = true, desc = "(Un)Comment current code line/block" })
 		end,
 	}, -- "gc" to comment visual regions/lines
