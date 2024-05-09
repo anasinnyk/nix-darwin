@@ -1,0 +1,72 @@
+# focus window
+cmd - h : yabai -m window --focus west
+cmd - j : yabai -m window --focus south
+cmd - k : yabai -m window --focus north
+cmd - l : yabai -m window --focus east
+
+# swap managed window
+ctrl + cmd - h : yabai -m window --swap west
+ctrl + cmd - j : yabai -m window --swap south
+ctrl + cmd - k : yabai -m window --swap north
+ctrl + cmd - l : yabai -m window --swap east
+
+# move managed window
+ctrl + cmd + shift - h : yabai -m window --warp west
+ctrl + cmd + shift - j : yabai -m window --warp south
+ctrl + cmd + shift - k : yabai -m window --warp north
+ctrl + cmd + shift - l : yabai -m window --warp east
+
+ctrl + cmd - a : yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app=="Alacritty") | .id][0]')
+ctrl + cmd - b : yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app=="Firefox") | .id][0]')
+
+# rotate tree
+cmd + ctrl - r : yabai -m space --rotate 90
+
+# toggle window fullscreen zoom
+cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
+
+# float / unfloat window and center on screen
+cmd + ctrl - t : yabai -m window --toggle float;\
+        yabai -m window --grid 4:4:1:1:2:2
+
+# toggle window split type
+cmd + ctrl - e : yabai -m window --toggle split
+
+# move window and focus desktop
+ctrl + cmd - 1 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 1; yabai -m window --focus $w
+ctrl + cmd - 2 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 2; yabai -m window --focus $w
+ctrl + cmd - 3 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 3; yabai -m window --focus $w
+ctrl + cmd - 4 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 4; yabai -m window --focus $w
+ctrl + cmd - 5 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 5; yabai -m window --focus $w
+ctrl + cmd - 6 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 6; yabai -m window --focus $w
+ctrl + cmd - 7 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 7; yabai -m window --focus $w
+ctrl + cmd - 8 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 8; yabai -m window --focus $w
+ctrl + cmd - 9 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 9; yabai -m window --focus $w
+ctrl + cmd - 0 : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --space 10; yabai -m window --focus $w
+
+cmd - 1 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 1) | ."first-window"'); yabai -m window --focus $w
+cmd - 2 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 2) | ."first-window"'); yabai -m window --focus $w
+cmd - 3 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 3) | ."first-window"'); yabai -m window --focus $w
+cmd - 4 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 4) | ."first-window"'); yabai -m window --focus $w
+cmd - 5 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 5) | ."first-window"'); yabai -m window --focus $w
+cmd - 6 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 6) | ."first-window"'); yabai -m window --focus $w
+cmd - 7 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 7) | ."first-window"'); yabai -m window --focus $w
+cmd - 8 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 8) | ."first-window"'); yabai -m window --focus $w
+cmd - 9 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 9) | ."first-window"'); yabai -m window --focus $w
+cmd - 0 : w=$(yabai -m query --spaces | jq '.[] | select(.index == 10) | ."first-window"'); yabai -m window --focus $w
+
+# fast prev focus
+alt - tab : yabai -m window --focus recent
+
+# send window to monitor and follow focus
+ctrl + cmd - n : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --display next; yabai -m window --focus $w
+ctrl + cmd - p : w=$(yabai -m query --windows --window | jq '.id'); yabai -m window --display prev; yabai -m window --focus $w
+cmd + ctrl + alt - r : \
+  w=$(yabai -m query --windows --window | jq '.id'); \
+  cs=$(yabai -m query --spaces --space | jq '.index'); \
+  ns=$(yabai -m query --spaces | jq '[.[] | select(."is-visible" == true and ."has-focus" == false) | .index][0]'); \
+  csws=$(yabai -m query --spaces --space | jq '.windows | .[]'); \
+  nsws=$(yabai -m query --spaces --space $ns | jq '.windows | .[]'); \
+  echo $csws | xargs -n1 -I{} yabai -m window {} --space $ns; \
+  echo $nsws | xargs -n1 -I{} yabai -m window {} --space $cs; \
+  yabai -m window --focus $w;
