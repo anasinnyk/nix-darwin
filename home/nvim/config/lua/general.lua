@@ -72,6 +72,7 @@ vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, { desc = "Show diag
 vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 vim.keymap.set("n", "<leader>w", ":w<cr>", { desc = "Save/[W]rite buffer" })
+vim.keymap.set("n", "<leader>q", ":q<cr>", { desc = "[Q]uit" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -90,6 +91,8 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 -- Scrolling
 vim.keymap.set("n", "m", "<C-d>")
 vim.keymap.set("n", ",", "<C-u>")
+-- Redo
+vim.keymap.set("n", "U", "<C-r>")
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
