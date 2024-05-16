@@ -73,6 +73,8 @@ return {
 			cmp.setup({
 				formatting = lsp_zero.cmp_format({ details = true }),
 				sources = {
+					-- SQL Dadbod
+					{ name = 'vim-dadbod-completion' },
 					-- Copilot Source
 					{ name = "copilot",  group_index = 2 },
 					-- Other Sources
@@ -161,6 +163,22 @@ return {
 			vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#000000" })
 			require("copilot").setup({})
 			require("copilot_cmp").setup()
+		end,
+	},
+	{
+		'kristijanhusak/vim-dadbod-ui',
+		dependencies = {
+			{ 'tpope/vim-dadbod',                     lazy = true },
+			{ 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+		},
+		cmd = {
+			'DBUI',
+			'DBUIToggle',
+			'DBUIAddConnection',
+			'DBUIFindBuffer',
+		},
+		init = function()
+			vim.g.db_ui_use_nerd_fonts = 1
 		end,
 	},
 }
