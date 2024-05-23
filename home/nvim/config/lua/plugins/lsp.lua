@@ -1,5 +1,30 @@
 return {
 	{
+		'nvimdev/lspsaga.nvim',
+		config = function()
+			require('lspsaga').setup({})
+
+			require("which-key").register({
+				l = {
+					name = "LSP",
+					c = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
+					o = { "<cmd>Lspsaga outline<cr>", "Outline" },
+					r = { "<cmd>Lspsaga rename<cr>", "Rename" },
+					d = { "<cmd>Lspsaga goto_definition<cr>", "Lsp GoTo Definition" },
+					f = { "<cmd>Lspsaga finder<cr>", "Lsp Finder" },
+					p = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
+					s = { "<cmd>Lspsaga signature_help<cr>", "Signature Help" },
+					w = { "<cmd>Lspsaga show_workspace_diagnostics<cr>", "Show Workspace Diagnostics" },
+				}
+			}, { prefix = "<leader>" })
+		end,
+		dependencies = {
+			"folke/which-key.nvim",
+			'nvim-treesitter/nvim-treesitter', -- optional
+			'nvim-tree/nvim-web-devicons',  -- optional
+		}
+	},
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
 		lazy = true,
@@ -76,11 +101,11 @@ return {
 					-- SQL Dadbod
 					{ name = 'vim-dadbod-completion' },
 					-- Copilot Source
-					{ name = "copilot",  group_index = 2 },
+					{ name = "copilot",              group_index = 2 },
 					-- Other Sources
-					{ name = "nvim_lsp", group_index = 1 },
-					{ name = "path",     group_index = 3 },
-					{ name = "buffer",   group_index = 3 },
+					{ name = "nvim_lsp",             group_index = 1 },
+					{ name = "path",                 group_index = 3 },
+					{ name = "buffer",               group_index = 3 },
 				},
 				mapping = cmp.mapping.preset.insert({
 					['<C-Space>'] = cmp.mapping.complete(),
