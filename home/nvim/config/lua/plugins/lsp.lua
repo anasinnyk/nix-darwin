@@ -142,7 +142,10 @@ return {
 			lsp_zero.extend_lspconfig()
 
 			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({ buffer = bufnr })
+				lsp_zero.default_keymaps({
+					buffer = bufnr,
+					preserve_mappings = false,
+				})
 				lsp_zero.buffer_autoformat()
 			end)
 
