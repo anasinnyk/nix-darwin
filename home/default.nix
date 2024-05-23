@@ -14,6 +14,7 @@
   ];
 
   home.stateVersion = "24.05";
+  home.enableNixpkgsReleaseCheck = false;
 
   home.packages = with pkgs; [
     gnupg
