@@ -172,8 +172,41 @@ return {
 				},
 			})
 
+			require("lspconfig").yamlls.setup({
+				filetypes = { "yaml", "json" },
+				settings = {
+					yaml = {
+						schemaDownload = {
+							enable = true,
+						},
+						validate = true,
+						schemas = {
+							['https://json.schemastore.org/kustomization.json'] = 'kustomization.{yml,yaml}',
+							["https://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+							["https://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+							kubernetes = "*.yaml"
+						},
+						format = {
+							enable = true,
+						},
+						hover = true,
+						completion = true,
+					},
+				},
+			})
+
 			require("lspconfig").lua_ls.setup(lsp_zero.nvim_lua_ls())
 		end
+	},
+	{
+		"anasinnyk/nvim-k8s-crd",
+		event = { "BufEnter *.yaml" },
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+		config = function()
+			require("k8s-crd").setup()
+		end,
 	},
 	{
 		"zbirenbaum/copilot-cmp",
