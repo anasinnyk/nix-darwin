@@ -10,7 +10,7 @@ return {
 		})
 
 		require("which-key").register({
-				c = {
+				o = {
 					name = "ChatGPT",
 					c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
 					e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },

@@ -61,6 +61,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>o", "<cmd>Telescope neoclip<CR>", { desc = "Telescope Neoclip" })
+		vim.keymap.set("n", "<leader>tb", "<cmd>Telescope neoclip<CR>", { desc = "[T]oggle [C]lipboard" })
 	end,
 }
