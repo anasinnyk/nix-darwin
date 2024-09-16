@@ -110,3 +110,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+vim.keymap.set("n", "<leader>kfb",
+	"<cmd>let bf = expand('%') | vnew | execute printf('r !flux build ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\")', bf, bf, bf) | setlocal filetype=yaml<CR>",
+	{ desc = "FluxCD Kustomize Build" })

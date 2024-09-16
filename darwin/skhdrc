@@ -16,8 +16,9 @@ ctrl + cmd + shift - j : yabai -m window --warp south
 ctrl + cmd + shift - k : yabai -m window --warp north
 ctrl + cmd + shift - l : yabai -m window --warp east
 
-ctrl + cmd - a : yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app=="Alacritty") | .id][0]')
+ctrl + cmd - c : yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app=="WezTerm") | .id][0]')
 ctrl + cmd - b : yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app=="Firefox") | .id][0]')
+ctrl + cmd - s : yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app=="Slack") | .id][0]')
 
 # rotate tree
 cmd + ctrl - r : yabai -m space --rotate 90
