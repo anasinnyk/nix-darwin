@@ -111,6 +111,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.keymap.set("n", "<leader>kfb",
-	"<cmd>let bf = expand('%') | vnew | execute printf('r !flux build ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\")', bf, bf, bf) | setlocal filetype=yaml<CR>",
-	{ desc = "FluxCD Kustomize Build" })
+vim.keymap.set("n", "<leader>kfb", function()
+	local bf = vim.fn.expand('%')
+	vim.cmd("vnew")
+	vim.cmd("setlocal buftype=nofile")
+	vim.cmd(string.format(
+		"execute 'r !flux build ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\")'",
+		bf, bf, bf))
+	vim.cmd("setlocal filetype=yaml")
+	vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>bd!<CR>", { noremap = true, silent = true })
+end, { desc = "[K]ustomize [F]lux [B]uild" })
+vim.keymap.set("n", "<leader>kfd", function()
+	local bf = vim.fn.expand('%')
+	vim.cmd("new")
+	vim.cmd("setlocal buftype=nofile")
+	vim.cmd(string.format(
+		"execute 'r !flux diff ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\")'",
+		bf, bf, bf))
+	vim.cmd("setlocal filetype=yaml")
+	vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>bd!<CR>", { noremap = true, silent = true })
+end, { desc = "[K]ustomize [F]lux [D]iff" })

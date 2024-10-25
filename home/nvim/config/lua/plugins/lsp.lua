@@ -156,10 +156,27 @@ return {
 				},
 				servers = {
 					['rust_analyzer'] = { 'rust' },
+					['gopls'] = { 'go', 'gomod', 'gowork', 'gotmpl' },
+					['yamlls'] = { 'yaml', 'json' },
 				}
 			})
 
 			local util = require("lspconfig/util")
+			require("lspconfig").gopls.setup({
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				root_dir = util.root_pattern("go.mod", "go.work"),
+				settings = {
+					gopls = {
+						analyses = {
+							completeUnimported = true,
+							usePlaceholders = true,
+							unusedparams = true,
+							unusedvariable = true,
+							shadow = true,
+						},
+					},
+				},
+			})
 			require("lspconfig").rust_analyzer.setup({
 				filetypes = { "rust" },
 				root_dir = util.root_pattern("Cargo.toml"),

@@ -11,6 +11,8 @@ return {
 			["<leader>b"] = { name = "[B]uffer", _ = "which_key_ignore" },
 			["<leader>c"] = { name = "[C]hat GPT", _ = "which_key_ignore" },
 			["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
+			["<leader>k"] = { name = "[K]ustomize", _ = "which_key_ignore" },
+			["<leader>kf"] = { name = "[K]ustomize [F]lux", _ = "which_key_ignore" },
 		})
 	end,
 }
