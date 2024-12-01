@@ -4,15 +4,15 @@ return {
 	config = function()
 		require("which-key").setup()
 
-		require("which-key").register({
-			["<leader>f"] = { name = "[F]ind", _ = "which_key_ignore" },
-			["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-			["<leader>l"] = { name = "[L]SP", _ = "which_key_ignore" },
-			["<leader>b"] = { name = "[B]uffer", _ = "which_key_ignore" },
-			["<leader>c"] = { name = "[C]hat GPT", _ = "which_key_ignore" },
-			["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-			["<leader>k"] = { name = "[K]ustomize", _ = "which_key_ignore" },
-			["<leader>kf"] = { name = "[K]ustomize [F]lux", _ = "which_key_ignore" },
+		require("which-key").add({
+			{ "<leader>f",  group = "[F]ind" },
+			{ "<leader>t",  group = "[T]oggle" },
+			{ "<leader>l",  group = "[L]SP" },
+			{ "<leader>b",  group = "[B]uffer" },
+			{ "<leader>g",  group = "[G]it" },
+			{ "<leader>o",  group = "[O]cto" },
+			{ "<leader>k",  group = "[K]ustomize" },
+			{ "<leader>kf", group = "[K]ustomize [F]lux" },
 		})
 	end,
 }
