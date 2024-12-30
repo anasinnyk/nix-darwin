@@ -18,7 +18,7 @@
 
   home.packages = with pkgs; [
     gnupg
-    _1password
+    _1password-cli
     direnv
     cachix
     inputs.devenv.packages."${pkgs.system}".devenv

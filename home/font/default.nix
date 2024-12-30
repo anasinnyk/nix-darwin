@@ -3,9 +3,9 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    inconsolata-nerdfont
     jetbrains-mono
-    nerdfonts
+    nerd-fonts.inconsolata
+    nerd-fonts.droid-sans-mono
     font-awesome
   ];
 }

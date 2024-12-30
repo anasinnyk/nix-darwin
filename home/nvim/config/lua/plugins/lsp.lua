@@ -263,4 +263,17 @@ return {
 			vim.g.db_ui_use_nerd_fonts = 1
 		end,
 	},
+	{
+		'mrcjkb/haskell-tools.nvim',
+		version = '^4',
+		lazy = false,
+		keys = {
+			{ '<space>cl',  vim.lsp.codelens.run,                                                              desc = 'Code Lens' },
+			{ '<leader>hs', require('haskell-tools').hoogle.hoogle_signature,                                  desc = 'Hoogle Signature' },
+			{ '<leader>ea', require('haskell-tools').lsp.buf_eval_all,                                         desc = 'Evaluate All' },
+			{ '<leader>rr', require('haskell-tools').repl.toggle,                                              desc = 'Toggle Repl Package' },
+			{ '<leader>rf', function() require('haskell-tools').repl.toggle(vim.api.nvim_buf_get_name(0)) end, desc = 'Toggle Repl Buffer' },
+			{ '<leader>rq', require('haskell-tools').repl.quit,                                                desc = 'Quit Repl' },
+		},
+	}
 }
