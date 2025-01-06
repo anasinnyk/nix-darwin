@@ -2,6 +2,7 @@
 {
   imports = [
     ./wezterm
+    ./ghostty
     ./alacritty
     ./zsh
     ./tmux
@@ -13,7 +14,7 @@
     ./languages
   ];
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   home.enableNixpkgsReleaseCheck = false;
 
   home.packages = with pkgs; [

@@ -84,7 +84,7 @@
       "tailscale"
       "firefox"
       "wezterm"
-      "alacritty"
+      "ghostty"
       "signal"
       "slack"
       "telegram"

@@ -267,13 +267,21 @@ return {
 		'mrcjkb/haskell-tools.nvim',
 		version = '^4',
 		lazy = false,
-		keys = {
-			{ '<space>cl',  vim.lsp.codelens.run,                                                              desc = 'Code Lens' },
-			{ '<leader>hs', require('haskell-tools').hoogle.hoogle_signature,                                  desc = 'Hoogle Signature' },
-			{ '<leader>ea', require('haskell-tools').lsp.buf_eval_all,                                         desc = 'Evaluate All' },
-			{ '<leader>rr', require('haskell-tools').repl.toggle,                                              desc = 'Toggle Repl Package' },
-			{ '<leader>rf', function() require('haskell-tools').repl.toggle(vim.api.nvim_buf_get_name(0)) end, desc = 'Toggle Repl Buffer' },
-			{ '<leader>rq', require('haskell-tools').repl.quit,                                                desc = 'Quit Repl' },
-		},
+		config = function()
+			local ht = require('haskell-tools')
+			local bufnr = vim.api.nvim_get_current_buf()
+			vim.keymap.set('n', '<space>cl', vim.lsp.codelens.run,
+				{ desc = 'Code Lens', noremap = true, silent = true, buffer = bufnr });
+			vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature,
+				{ desc = 'Hoogle Signature', noremap = true, silent = true, buffer = bufnr });
+			vim.keymap.set('n', '<leader>ea', ht.lsp.buf_eval_all,
+				{ desc = 'Evaluate All', noremap = true, silent = true, buffer = bufnr });
+			vim.keymap.set('n', '<leader>rr', ht.repl.toggle,
+				{ desc = 'Toggle Repl Package', noremap = true, silent = true, buffer = bufnr });
+			vim.keymap.set('n', '<leader>rf', function() ht.repl.toggle(vim.api.nvim_buf_get_name(0)) end,
+				{ desc = 'Toggle Repl Buffer', noremap = true, silent = true, buffer = bufnr });
+			vim.keymap.set('n', '<leader>rq', ht.repl.quit,
+				{ desc = 'Quit Repl', noremap = true, silent = true, buffer = bufnr });
+		end,
 	}
 }

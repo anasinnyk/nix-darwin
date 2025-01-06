@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     github-copilot-cli
     github-cli
+    gh-dash
     lazygit
   ];
   programs.git = {
