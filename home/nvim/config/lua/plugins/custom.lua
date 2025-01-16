@@ -6,7 +6,7 @@ return {
 		config = function()
 			vim.keymap.set("n", "<leader>/", function()
 				return vim.v.count == 0 and "<Plug>(comment_toggle_linewise_current)"
-					or "<Plug>(comment_toggle_linewise_count)"
+						or "<Plug>(comment_toggle_linewise_count)"
 			end, { expr = true, desc = "Comment current code line(s)" })
 			vim.keymap.set("x", "<leader>/", function()
 				if vim.fn.mode() == "V" then

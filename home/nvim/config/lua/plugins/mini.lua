@@ -19,6 +19,8 @@ return { -- Collection of various small independent plugins/modules
 		-- <M-h> <M-j> <M-k> <M-l> to move code blocks
 		require("mini.move").setup({})
 
+		require("mini.icons").setup({})
+
 		-- Simple and easy statusline.
 		--  You could remove this setup call if you don't like it,
 		--  and try some other statusline plugin

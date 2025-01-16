@@ -5,6 +5,7 @@
     disfetch
     lolcat
     cowsay
+    btop
     onefetch
     jq
     yq-go

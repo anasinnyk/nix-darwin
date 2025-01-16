@@ -32,45 +32,45 @@ return {
 			vim.g.lsp_zero_extend_lspconfig = 0
 		end,
 	},
-	{
-		"onsails/lspkind.nvim",
-		config = function()
-			require("lspkind").init({
-				mode = 'symbol_text',
-
-				preset = 'codicons',
-
-				symbol_map = {
-					Text = "󰉿",
-					Method = "󰆧",
-					Function = "󰊕",
-					Constructor = "",
-					Field = "󰜢",
-					Variable = "󰀫",
-					Class = "󰠱",
-					Interface = "",
-					Module = "",
-					Property = "󰜢",
-					Unit = "󰑭",
-					Value = "󰎠",
-					Enum = "",
-					Keyword = "󰌋",
-					Snippet = "",
-					Color = "󰏘",
-					File = "󰈙",
-					Reference = "󰈇",
-					Folder = "󰉋",
-					EnumMember = "",
-					Constant = "󰏿",
-					Struct = "󰙅",
-					Event = "",
-					Operator = "󰆕",
-					TypeParameter = "",
-					Copilot = "",
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"onsails/lspkind.nvim",
+	-- 	config = function()
+	-- 		require("lspkind").init({
+	-- 			mode = 'symbol_text',
+	--
+	-- 			preset = 'codicons',
+	--
+	-- 			symbol_map = {
+	-- 				Text = "󰉿",
+	-- 				Method = "󰆧",
+	-- 				Function = "󰊕",
+	-- 				Constructor = "",
+	-- 				Field = "󰜢",
+	-- 				Variable = "󰀫",
+	-- 				Class = "󰠱",
+	-- 				Interface = "",
+	-- 				Module = "",
+	-- 				Property = "󰜢",
+	-- 				Unit = "󰑭",
+	-- 				Value = "󰎠",
+	-- 				Enum = "",
+	-- 				Keyword = "󰌋",
+	-- 				Snippet = "",
+	-- 				Color = "󰏘",
+	-- 				File = "󰈙",
+	-- 				Reference = "󰈇",
+	-- 				Folder = "󰉋",
+	-- 				EnumMember = "",
+	-- 				Constant = "󰏿",
+	-- 				Struct = "󰙅",
+	-- 				Event = "",
+	-- 				Operator = "󰆕",
+	-- 				TypeParameter = "",
+	-- 				Copilot = "",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -98,6 +98,8 @@ return {
 				sources = {
 					-- SQL Dadbod
 					{ name = 'vim-dadbod-completion' },
+					-- Haskell
+					{ name = 'haskell-tools' },
 					-- Copilot Source
 					{ name = "copilot",              group_index = 2 },
 					-- Other Sources
@@ -265,23 +267,30 @@ return {
 	},
 	{
 		'mrcjkb/haskell-tools.nvim',
-		version = '^4',
 		lazy = false,
-		config = function()
-			local ht = require('haskell-tools')
-			local bufnr = vim.api.nvim_get_current_buf()
-			vim.keymap.set('n', '<space>cl', vim.lsp.codelens.run,
-				{ desc = 'Code Lens', noremap = true, silent = true, buffer = bufnr });
-			vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature,
-				{ desc = 'Hoogle Signature', noremap = true, silent = true, buffer = bufnr });
-			vim.keymap.set('n', '<leader>ea', ht.lsp.buf_eval_all,
-				{ desc = 'Evaluate All', noremap = true, silent = true, buffer = bufnr });
-			vim.keymap.set('n', '<leader>rr', ht.repl.toggle,
-				{ desc = 'Toggle Repl Package', noremap = true, silent = true, buffer = bufnr });
-			vim.keymap.set('n', '<leader>rf', function() ht.repl.toggle(vim.api.nvim_buf_get_name(0)) end,
-				{ desc = 'Toggle Repl Buffer', noremap = true, silent = true, buffer = bufnr });
-			vim.keymap.set('n', '<leader>rq', ht.repl.quit,
-				{ desc = 'Quit Repl', noremap = true, silent = true, buffer = bufnr });
+		dependencies = {
+			{ 'kevinhwang91/nvim-ufo', lazy = true },
+		},
+		version = '^4',
+		init = function()
+			vim.g.haskell_tools = {
+				hls = {
+					on_attach = function(client, bufnr, ht)
+						vim.keymap.set('n', '<space>cl', vim.lsp.codelens.run,
+							{ desc = 'Code Lens', noremap = true, silent = true, buffer = bufnr });
+						vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature,
+							{ desc = 'Hoogle Signature', noremap = true, silent = true, buffer = bufnr });
+						vim.keymap.set('n', '<leader>ea', ht.lsp.buf_eval_all,
+							{ desc = 'Evaluate All', noremap = true, silent = true, buffer = bufnr });
+						vim.keymap.set('n', '<leader>rr', ht.repl.toggle,
+							{ desc = 'Toggle Repl Package', noremap = true, silent = true, buffer = bufnr });
+						vim.keymap.set('n', '<leader>rf', function() ht.repl.toggle(vim.api.nvim_buf_get_name(0)) end,
+							{ desc = 'Toggle Repl Buffer', noremap = true, silent = true, buffer = bufnr });
+						vim.keymap.set('n', '<leader>rq', ht.repl.quit,
+							{ desc = 'Quit Repl', noremap = true, silent = true, buffer = bufnr });
+					end
+				}
+			}
 		end,
 	}
 }

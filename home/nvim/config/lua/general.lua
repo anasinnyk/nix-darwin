@@ -5,6 +5,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
+vim.opt.colorcolumn = { 81, 121 }
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -82,12 +83,6 @@ vim.keymap.set("n", "<leader>q", ":q<cr>", { desc = "[Q]uit" })
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- TIP: Disable arrow keys in normal mode
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
 -- Scrolling
 vim.keymap.set("n", "m", "<C-d>")
 vim.keymap.set("n", ",", "<C-u>")
@@ -98,10 +93,14 @@ vim.keymap.set("n", "U", "<C-r>")
 --  Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
 --
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-s>", "<cmd>vert res +3<cr>", { desc = "Resize window left " })
+vim.keymap.set("n", "<C-g>", "<cmd>vert res -3<cr>", { desc = "Resize window right" })
+vim.keymap.set("n", "<C-d>", "<cmd>res -3<cr>", { desc = "Resize window up" })
+vim.keymap.set("n", "<C-f>", "<cmd>res +3<cr>", { desc = "Resize window down" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -121,6 +120,7 @@ vim.keymap.set("n", "<leader>kfb", function()
 	vim.cmd("setlocal filetype=yaml")
 	vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>bd!<CR>", { noremap = true, silent = true })
 end, { desc = "[K]ustomize [F]lux [B]uild" })
+
 vim.keymap.set("n", "<leader>kfd", function()
 	local bf = vim.fn.expand('%')
 	vim.cmd("new")

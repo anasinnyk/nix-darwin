@@ -21,6 +21,9 @@
       commit = {
         gpgSign = true;
       };
+      diff = {
+        colormoved = "zebra";
+      };
     };
     aliases = {
       huyak = "git add . && git commit --amend --no-edit && git push -f";
