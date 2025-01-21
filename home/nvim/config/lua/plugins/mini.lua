@@ -20,12 +20,9 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.move").setup({})
 
 		require("mini.splitjoin").setup({})
-		require("mini.icons").setup({
-			lsp = {
-				mode = "Replace",
-			},
-		})
+		require("mini.icons").setup({})
 		MiniIcons.mock_nvim_web_devicons()
+		MiniIcons.tweak_lsp_kind("replace")
 
 		-- Simple and easy statusline.
 		--  You could remove this setup call if you don't like it,

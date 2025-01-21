@@ -40,6 +40,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"L3MON4D3/LuaSnip",
 			"mrcjkb/haskell-snippets.nvim",
+			"onsails/lspkind.nvim",
 		},
 		config = function()
 			local lsp_zero = require('lsp-zero')
@@ -54,13 +55,18 @@ return {
 				return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 			end
 
+			local lspkind = require('lspkind')
 			local ls = require('luasnip')
 			local hs_snip = require('haskell-snippets').all
 			ls.add_snippets('haskell', hs_snip, { key = 'haskell' })
 
 
 			cmp.setup({
-				formatting = lsp_zero.cmp_format({ details = true }),
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = 'text_symbol',
+					}),
+				},
 				sources = {
 					-- SQL Dadbod
 					{ name = 'vim-dadbod-completion' },
