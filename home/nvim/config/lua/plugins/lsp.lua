@@ -19,7 +19,6 @@ return {
 		dependencies = {
 			"folke/which-key.nvim",
 			'nvim-treesitter/nvim-treesitter', -- optional
-			'nvim-tree/nvim-web-devicons',  -- optional
 		}
 	},
 	{
@@ -32,45 +31,6 @@ return {
 			vim.g.lsp_zero_extend_lspconfig = 0
 		end,
 	},
-	-- {
-	-- 	"onsails/lspkind.nvim",
-	-- 	config = function()
-	-- 		require("lspkind").init({
-	-- 			mode = 'symbol_text',
-	--
-	-- 			preset = 'codicons',
-	--
-	-- 			symbol_map = {
-	-- 				Text = "󰉿",
-	-- 				Method = "󰆧",
-	-- 				Function = "󰊕",
-	-- 				Constructor = "",
-	-- 				Field = "󰜢",
-	-- 				Variable = "󰀫",
-	-- 				Class = "󰠱",
-	-- 				Interface = "",
-	-- 				Module = "",
-	-- 				Property = "󰜢",
-	-- 				Unit = "󰑭",
-	-- 				Value = "󰎠",
-	-- 				Enum = "",
-	-- 				Keyword = "󰌋",
-	-- 				Snippet = "",
-	-- 				Color = "󰏘",
-	-- 				File = "󰈙",
-	-- 				Reference = "󰈇",
-	-- 				Folder = "󰉋",
-	-- 				EnumMember = "",
-	-- 				Constant = "󰏿",
-	-- 				Struct = "󰙅",
-	-- 				Event = "",
-	-- 				Operator = "󰆕",
-	-- 				TypeParameter = "",
-	-- 				Copilot = "",
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -79,6 +39,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
 			"L3MON4D3/LuaSnip",
+			"mrcjkb/haskell-snippets.nvim",
 		},
 		config = function()
 			local lsp_zero = require('lsp-zero')
@@ -92,6 +53,11 @@ return {
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 				return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 			end
+
+			local ls = require('luasnip')
+			local hs_snip = require('haskell-snippets').all
+			ls.add_snippets('haskell', hs_snip, { key = 'haskell' })
+
 
 			cmp.setup({
 				formatting = lsp_zero.cmp_format({ details = true }),
@@ -124,7 +90,7 @@ return {
 				}),
 				snippet = {
 					expand = function(args)
-						require('luasnip').lsp_expand(args.body)
+						ls.lsp_expand(args.body)
 					end,
 				},
 			})
@@ -270,9 +236,23 @@ return {
 		lazy = false,
 		dependencies = {
 			{ 'kevinhwang91/nvim-ufo', lazy = true },
+			{ 'Vigemus/iron.nvim',     lazy = true },
 		},
 		version = '^4',
 		init = function()
+			local iron = require('iron.core')
+			iron.setup {
+				config = {
+					repl_definition = {
+						haskell = {
+							command = function(meta)
+								local file = vim.api.nvim_buf_get_name(meta.current_bufnr)
+								return require('haskell-tools').repl.mk_repl_cmd(file)
+							end,
+						},
+					},
+				},
+			}
 			vim.g.haskell_tools = {
 				hls = {
 					on_attach = function(client, bufnr, ht)

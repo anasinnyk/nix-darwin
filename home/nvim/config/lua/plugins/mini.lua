@@ -19,7 +19,13 @@ return { -- Collection of various small independent plugins/modules
 		-- <M-h> <M-j> <M-k> <M-l> to move code blocks
 		require("mini.move").setup({})
 
-		require("mini.icons").setup({})
+		require("mini.splitjoin").setup({})
+		require("mini.icons").setup({
+			lsp = {
+				mode = "Replace",
+			},
+		})
+		MiniIcons.mock_nvim_web_devicons()
 
 		-- Simple and easy statusline.
 		--  You could remove this setup call if you don't like it,

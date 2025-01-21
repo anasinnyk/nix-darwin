@@ -15,7 +15,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		{ "aaronhallaert/advanced-git-search.nvim" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
 		{ "nvim-telescope/telescope-ui-select.nvim" },
-		{ "nvim-tree/nvim-web-devicons",                 enabled = vim.g.have_nerd_font },
+		{ "luc-tielen/telescope_hoogle" },
 	},
 	config = function()
 		pcall(require("telescope").load_extension, "fzf")
@@ -24,6 +24,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		pcall(require("telescope").load_extension, "undo")
 		pcall(require("telescope").load_extension, "advanced_git_search")
 		pcall(require("telescope").load_extension, "live_grep_args")
+		pcall(require("telescope").load_extension, "hoogle")
 
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
@@ -43,6 +44,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>fi", "<cmd>AdvancedGitSearch<CR>", { desc = "AdvancedGitSearch" })
 		vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Search [G]it [C]ommits" })
 		vim.keymap.set("n", "<leader>gb", builtin.git_bcommits, { desc = "Search [G]it Commits for [B]uffer" })
+		vim.keymap.set("n", "<leader>fh", "<cmd>Telescope hoogle<CR>", { desc = "Search [H]oogle" })
 
 		vim.keymap.set("n", "<leader>f/", function()
 			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
