@@ -9,9 +9,6 @@ return { -- Collection of various small independent plugins/modules
 		--  - ci'  - [C]hange [I]nside [']quote
 		local gen_spec = require("mini.ai").gen_spec
 		require("mini.ai").setup({
-			custom_textobjects = {
-				f = gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
-			},
 			n_lines = 500
 		})
 
