@@ -13,7 +13,9 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   programs.zsh.enable = true;
 
@@ -81,13 +83,8 @@
 
     casks = [
       "1password"
-      "tailscale"
-      "firefox"
-      "wezterm"
-      "ghostty"
       "signal"
       "slack"
-      "telegram"
       "rectangle"
       "zoom"
       "loom"
@@ -95,7 +92,6 @@
       "keycastr"
       "via"
       "claude"
-      "setapp"
     ];
   };
 }

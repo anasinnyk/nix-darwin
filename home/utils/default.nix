@@ -16,5 +16,22 @@
     unzip
     neofetch
     httpie
+    thefuck
+    tldr
+    scc
+    duf
+    most
+    procs
+    sd
+    tre
+    dog
+    browsh
+    buku
+    cmus
+    khal
+    mutt
+    newsboat
+    taskwarrior3
+    navi
   ];
 }

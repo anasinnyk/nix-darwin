@@ -11,6 +11,10 @@
       "cat" = "bat";
       "top" = "btop";
       "grep" = "rg";
+      "df" = "duf";
+      "less" = "most";
+      "ps" = "procs";
+      "wttr" = "curl wttr.in/Kyiv";
     };
     plugins = [{
       name = "zsh-vi-mode";

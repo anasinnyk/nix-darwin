@@ -12,6 +12,7 @@
     ./font
     ./nvim
     ./languages
+    ./firefox
   ];
 
   home.stateVersion = "24.11";

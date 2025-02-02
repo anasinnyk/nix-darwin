@@ -55,5 +55,13 @@ return {
 			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "[G]o to Lazy[G]it" },
 		},
 	},
-	{ "sindrets/diffview.nvim" }
+	{ "sindrets/diffview.nvim" },
+	{
+		'topaxi/pipeline.nvim',
+		keys = {
+			{ '<leader>ci', '<cmd>Pipeline<cr>', desc = 'Open pipeline.nvim' },
+		},
+		---@type pipeline.Config
+		opts = {},
+	}
 }
