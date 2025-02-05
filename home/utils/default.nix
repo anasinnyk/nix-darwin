@@ -24,7 +24,7 @@
     procs
     sd
     tre
-    dog
+    dogdns
     browsh
     buku
     cmus
