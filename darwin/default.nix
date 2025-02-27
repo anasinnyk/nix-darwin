@@ -3,18 +3,17 @@
   environment.systemPackages = with pkgs; [
   ];
 
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    trusted-users = [
-      "root"
-      "andriinasinnyk"
-    ];
-    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
-    extra-substituters = "https://devenv.cachix.org";
-  };
-
-  nixpkgs.config = {
-    allowUnfree = true;
+  nix = {
+    enable = true;
+    settings = {
+      experimental-features = "nix-command flakes";
+      trusted-users = [
+        "root"
+        "andriinasinnyk"
+      ];
+      extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+      extra-substituters = "https://devenv.cachix.org";
+    };
   };
 
   programs.zsh.enable = true;
@@ -23,10 +22,12 @@
 
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
+    config = {
+      allowUnfree = true;
+    };
   };
 
   services = {
-    nix-daemon.enable = true;
     yabai = {
       enable = true;
       config = {

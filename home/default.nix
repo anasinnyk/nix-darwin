@@ -23,6 +23,7 @@
     _1password-cli
     direnv
     cachix
+    youtube-music
     inputs.devenv.packages."${pkgs.system}".devenv
   ];
 
