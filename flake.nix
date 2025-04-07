@@ -2,7 +2,7 @@
   description = "Andrii Nasinnyk Darwin flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/d2faa1bbca1b1e4962ce7373c5b0879e5b12cef2";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     devenv.url = "github:cachix/devenv/latest";
     home-manager.url = "github:nix-community/home-manager/master";
