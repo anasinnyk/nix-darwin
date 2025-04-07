@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./wezterm
@@ -24,7 +24,7 @@
     direnv
     cachix
     youtube-music
-    inputs.devenv.packages."${pkgs.system}".devenv
+    devenv
   ];
 
   home.sessionVariables = {
