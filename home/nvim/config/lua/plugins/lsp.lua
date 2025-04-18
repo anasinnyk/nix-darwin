@@ -9,7 +9,7 @@ return {
 				{ "<leader>lc", "<cmd>Lspsaga code_action<cr>",                desc = "Code Action" },
 				{ "<leader>lo", "<cmd>Lspsaga outline<cr>",                    desc = "Outline" },
 				{ "<leader>lr", "<cmd>Lspsaga rename<cr>",                     desc = "Rename" },
-				{ "<leader>ld", "<cmd>Lspsaga goto_definition<cr>",            desc = "Lsp GoTo Definition" },
+				{ "<leader>ld", "<cmd>Lspsaga goto_deftinition<cr>",           desc = "Lsp GoTo Definition" },
 				{ "<leader>lf", "<cmd>Lspsaga finder<cr>",                     desc = "Lsp Finder" },
 				{ "<leader>lp", "<cmd>Lspsaga preview_definition<cr>",         desc = "Preview Definition" },
 				{ "<leader>ls", "<cmd>Lspsaga signature_help<cr>",             desc = "Signature Help" },
@@ -197,8 +197,8 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		config = function()
-			require("k8s-crd").setup()
-		end,
+			require('nvim-k8s-crd').setup({})
+		end
 	},
 	{
 		"zbirenbaum/copilot-cmp",
@@ -244,21 +244,21 @@ return {
 			{ 'kevinhwang91/nvim-ufo', lazy = true },
 			{ 'Vigemus/iron.nvim',     lazy = true },
 		},
-		version = '^4',
+		version = '^5',
 		init = function()
-			local iron = require('iron.core')
-			iron.setup {
-				config = {
-					repl_definition = {
-						haskell = {
-							command = function(meta)
-								local file = vim.api.nvim_buf_get_name(meta.current_bufnr)
-								return require('haskell-tools').repl.mk_repl_cmd(file)
-							end,
-						},
-					},
-				},
-			}
+			-- local iron = require('iron.core')
+			-- iron.setup {
+			-- 	config = {
+			-- 		repl_definition = {
+			-- 			haskell = {
+			-- 				command = function(meta)
+			-- 					local file = vim.api.nvim_buf_get_name(meta.current_bufnr)
+			-- 					return require('haskell-tools').repl.mk_repl_cmd(file)
+			-- 				end,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- }
 			vim.g.haskell_tools = {
 				hls = {
 					on_attach = function(client, bufnr, ht)

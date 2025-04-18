@@ -91,6 +91,17 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
 		local actions = require("telescope.actions")
 
+		local refresh_buffer_searcher = function()
+			actions.close(prompt_bufnr)
+			vim.schedule(buffer_searcher)
+		end
+
+		local delete_buf = function()
+			local selection = action_state.get_selected_entry()
+			vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+			refresh_buffer_searcher()
+		end
+
 		require("telescope").setup({
 			extensions = {
 				["ui-select"] = {
@@ -103,6 +114,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				mappings = {
 					n = {
 						["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
+						["<M-c>"] = function()
+							local seclection = action_state.get_selected_entry()
+							actions.close(prompt_bufnr)
+							vim.api.nvim_buf_delete(seclection.bufnr, { force = true })
+						end,
 					},
 					i = {
 						["<C-j>"] = actions.cycle_history_next,
@@ -112,6 +128,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						["<C-S-d>"] = actions.delete_buffer,
 						["<C-s>"] = actions.cycle_previewers_next,
 						["<C-a>"] = actions.cycle_previewers_prev,
+						["<M-c>"] = function(prompt_bufnr)
+							local seclection = require("telescope.actions.state").get_selected_entry()
+							actions.close(prompt_bufnr)
+							vim.api.nvim_buf_delete(seclection.bufnr, { force = true })
+						end,
 					},
 				},
 				pickers = {
