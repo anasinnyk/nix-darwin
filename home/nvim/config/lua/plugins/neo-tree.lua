@@ -28,6 +28,23 @@ return {
 					sidebar.file_selector:remove_selected_file('neo-tree filesystem [1]')
 				end
 			end,
+			grug_far_replace = function(state)
+				local node = state.tree:get_node()
+				local prefills = {
+					paths = node.type == "directory" and vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ":p"))
+							or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ":h")),
+				}
+				local grug_far = require("grug-far")
+
+				if not grug_far.has_instance("explorer") then
+					grug_far.open({ instanceName = "explorer" })
+				else
+					grug_far.open_instance("explorer")
+				end
+				-- doing it seperately because multiple paths doesn't open work when passed with open
+				-- updating the prefills without clearing the search and other fields
+				grug_far.update_instance_prefills("explorer", prefills, false)
+			end,
 			copy_selector = function(state)
 				local node = state.tree:get_node()
 				local filepath = node:get_id()
@@ -73,6 +90,7 @@ return {
 			mappings = {
 				Y = "copy_selector",
 				['oa'] = "avante_add_files",
+				['F'] = "grug_far_replace",
 			},
 		},
 		event_handlers = {

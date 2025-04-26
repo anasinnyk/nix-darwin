@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "."
 vim.g.have_nerd_font = true
 
 vim.opt.number = true
@@ -67,8 +67,12 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps:
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
@@ -89,6 +93,33 @@ vim.keymap.set("n", ",", "<C-u>")
 -- Redo
 vim.keymap.set("n", "U", "<C-r>")
 
+-- close buffers
+vim.keymap.set("n", "<leader>x", ":bp| bd #<CR>", { desc = "[X] Close buffer" })
+-- close all buffers except the current one
+vim.keymap.set("n", "<leader>X", function()
+	local cur = vim.api.nvim_get_current_buf()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if buf ~= cur and vim.api.nvim_buf_is_loaded(buf) then
+			vim.api.nvim_buf_delete(buf, { force = true })
+		end
+	end
+end, { desc = "[X] Close all other buffers" })
+
+vim.keymap.set("n", "<leader><CR>", function()
+	require('telescope.builtin').buffers({
+		sort_lastused = true,
+		sort_mru = true,
+		ignore_current_buffer = false,
+		previewer = true,
+		layout_strategy = "horizontal",
+		layout_config = {
+			width = 0.9,
+			preview_cutoff = 120,
+			prompt_position = "top",
+		},
+	})
+end, { desc = "Telescope: Buffers with Preview" })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
@@ -97,10 +128,10 @@ vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Move focus to the le
 vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-s>", "<cmd>vert res +3<cr>", { desc = "Resize window left " })
-vim.keymap.set("n", "<C-g>", "<cmd>vert res -3<cr>", { desc = "Resize window right" })
-vim.keymap.set("n", "<C-d>", "<cmd>res -3<cr>", { desc = "Resize window up" })
-vim.keymap.set("n", "<C-f>", "<cmd>res +3<cr>", { desc = "Resize window down" })
+vim.keymap.set("n", "<C-M-s>", "<cmd>vert res +3<cr>", { desc = "Resize window left " })
+vim.keymap.set("n", "<C-M-g>", "<cmd>vert res -3<cr>", { desc = "Resize window right" })
+vim.keymap.set("n", "<C-M-d>", "<cmd>res -3<cr>", { desc = "Resize window up" })
+vim.keymap.set("n", "<C-M-f>", "<cmd>res +3<cr>", { desc = "Resize window down" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",

@@ -37,7 +37,7 @@ return {
 			require "octo".setup({
 				mappings_disable_default = false,
 			})
-		end
+		end,
 		keys = {
 			{ "<leader>gO", "<cmd>Octo pr list<cr>",         desc = "[G]it [O]cto PR" },
 			{ "<leader>gP", "<cmd>Octo pr view<cr>",         desc = "[G]it [P]ull Request" },
@@ -61,12 +61,4 @@ return {
 		},
 	},
 	{ "sindrets/diffview.nvim" },
-	{
-		'topaxi/pipeline.nvim',
-		keys = {
-			{ '<leader>ci', '<cmd>Pipeline<cr>', desc = 'Open pipeline.nvim' },
-		},
-		---@type pipeline.Config
-		opts = {},
-	}
 }
