@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = "."
+vim.g.maplocalleader = ","
 vim.g.have_nerd_font = true
 
 vim.opt.number = true
@@ -88,8 +88,8 @@ vim.keymap.set("n", "<leader>q", ":q<cr>", { desc = "[Q]uit" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Scrolling
-vim.keymap.set("n", "m", "<C-d>")
-vim.keymap.set("n", ",", "<C-u>")
+-- vim.keymap.set("n", "m", "<C-d>")
+-- vim.keymap.set("n", ",", "<C-u>")
 -- Redo
 vim.keymap.set("n", "U", "<C-r>")
 

@@ -4,6 +4,7 @@ return {
 	branch = "v3.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
 	opts = {
@@ -105,7 +106,7 @@ return {
 	keys = {
 		{
 			"<leader>tt",
-			"<cmd>Neotree toggle<cr>",
+			"<cmd>Neotree toggle reveal<cr>",
 			desc = "[T]oggle Neo[t]ree",
 		},
 	},

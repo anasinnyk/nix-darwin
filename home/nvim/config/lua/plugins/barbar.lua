@@ -32,7 +32,11 @@ return {
 		{ "<leader>bn", "<Cmd>BufferOrderByBufferNumber<CR>", { desc = "[B]uffers [o]rder by [b]uffer number" } },
 		{ "<leader>bd", "<Cmd>BufferOrderByDirectory<CR>",    { desc = "[B]uffers [o]rder by [d]irectory" } },
 		{ "<leader>bL", "<Cmd>BufferOrderByLanguage<CR>",     { desc = "[B]uffers [o]rder by [l]anguage" } },
+		{ "<leader>bs", "<Cmd>BufferPick<CR>",                { desc = "[B]uffers [S]elect" } },
 	},
-	opts = {},
+	opts = {
+		icons = {
+		},
+	},
 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
 }
