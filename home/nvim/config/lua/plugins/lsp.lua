@@ -244,7 +244,7 @@ return {
 			{ 'kevinhwang91/nvim-ufo', lazy = true },
 			{ 'Vigemus/iron.nvim',     lazy = true },
 		},
-		version = '^5',
+		version = '^6',
 		init = function()
 			-- local iron = require('iron.core')
 			-- iron.setup {
