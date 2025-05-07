@@ -1,8 +1,23 @@
 return {
 	"stevearc/oil.nvim",
+	lazy = false,
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	},
 	config = function()
 		local oil = require "oil"
 		oil.setup {
+			skip_confirm_for_simple_edits = true,
+			view_options = {
+				show_hidden = true,
+				is_always_hidden = function(name)
+					return name == ".git"
+							or name == ".devenv"
+							or name == ".DS_Store"
+							or name == ".k8s-schemas"
+							or name == ".."
+				end
+			},
 			keymaps = {
 				-- create a new mapping, gs, to search and replace in the current directory
 				gs = {
