@@ -9,6 +9,7 @@ return {
 		'mrcjkb/haskell-snippets.nvim',
 		"L3MON4D3/LuaSnip",
 	},
+	build = 'nix run .#build-plugin',
 	-- config = function()
 	-- 	local ls = require('luasnip')
 	-- 	local hs_snip = require('haskell-snippets').all
@@ -17,25 +18,24 @@ return {
 	opts = {
 		keymap = { preset = 'default' },
 		snippets = { preset = 'luasnip' },
-		apperence = {
-			use_nvim_cmp_as_default = true,
-			nerd_font_variant = 'mono',
+		appearance = {
+			nerd_font_variant = 'mono'
 		},
-		singnature = {
-			enable = true,
-		},
+		signature = { enabled = true },
 		sources = {
 			default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot', 'avante' },
-			lua = { inherit_defaults = true, 'lazydev' },
-			sql = { inherit_defaults = true, 'dadbod' },
-
+			per_filetype = {
+				lua = { inherit_defaults = true, 'lazydev' },
+				sql = { inherit_defaults = true, 'dadbod' },
+			},
 			providers = {
-				dadbod = { module = 'vim_dadbod_completion.blink' },
-				copilot = { module = 'blink-copilot', name = 'Copilot' },
+				lsp = { module = 'blink.cmp.sources.lsp', name = 'LSP', score_offset = 100 },
+				dadbod = { module = 'vim_dadbod_completion.blink', name = 'DadBoD', score_offset = 100 },
+				copilot = { module = 'blink-copilot', name = 'Copilot', score_offset = 1 },
 				avante = { module = 'blink-cmp-avante', name = 'Avante' },
-				lazydev = { module = 'lazydev' },
+				lazydev = { module = 'lazydev.integrations.blink', name = 'LazyDev', score_offset = 100 },
+				k
 			}
 		},
-		fuzzy = { implementation = "lua" },
 	},
 }
