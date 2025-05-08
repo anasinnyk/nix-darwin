@@ -13,7 +13,7 @@ return {
 			{ "<leader>g",  group = "[G]it" },
 			{ "<leader>k",  group = "[K]ustomize" },
 			{ "<leader>kf", group = "[K]ustomize [F]lux" },
-			{ "<leader>r",  group = "HTTP [R]equest" },
+			{ "<leader>R",  group = "HTTP [R]equest" },
 		})
 	end,
 }

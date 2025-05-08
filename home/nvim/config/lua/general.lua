@@ -59,6 +59,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.lsp.enable({ 'luals', 'yamlls', 'rust_analyzer', 'gopls', 'nil' })
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
