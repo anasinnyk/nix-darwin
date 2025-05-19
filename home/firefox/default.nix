@@ -3,7 +3,9 @@
   programs.firefox = {
     enable = true;
 
-    # package = pkgs.firefox-beta-bin;
+    package = pkgs.firefox-nightly-bin.overrideAttrs (_: rec {
+      override = _: pkgs.firefox-nightly-bin;
+    });
 
     policies = {
       DisablePocket = true;

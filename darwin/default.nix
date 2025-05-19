@@ -25,6 +25,7 @@
       UseKeychain yes
   '';
   system.stateVersion = 4;
+  system.primaryUser = "andriinasinnyk";
 
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
