@@ -10,13 +10,21 @@ return {
 		"L3MON4D3/LuaSnip",
 	},
 	build = 'nix run .#build-plugin',
-	-- config = function()
-	-- 	local ls = require('luasnip')
-	-- 	local hs_snip = require('haskell-snippets').all
-	-- 	ls.add_snippets('haskell', hs_snip, { key = 'haskell' })
-	-- end,
+	config = function(_, opts)
+		local blink_cmp = require("blink.cmp")
+		local ls = require("luasnip")
+
+		blink_cmp.setup(opts)
+
+		require("luasnip.loaders.from_vscode").lazy_load()
+
+		local hs_snip = require("haskell-snippets").all
+		ls.add_snippets("haskell", hs_snip, { key = "haskell" })
+	end,
 	opts = {
-		keymap = { preset = 'default' },
+		keymap = {
+			preset = 'default',
+		},
 		snippets = { preset = 'luasnip' },
 		appearance = {
 			nerd_font_variant = 'mono'
@@ -34,7 +42,6 @@ return {
 				copilot = { module = 'blink-copilot', name = 'Copilot', score_offset = 1 },
 				avante = { module = 'blink-cmp-avante', name = 'Avante' },
 				lazydev = { module = 'lazydev.integrations.blink', name = 'LazyDev', score_offset = 100 },
-				k
 			}
 		},
 	},
