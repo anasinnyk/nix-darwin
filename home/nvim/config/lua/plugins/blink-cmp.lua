@@ -23,7 +23,7 @@ return {
 		},
 		signature = { enabled = true },
 		sources = {
-			default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot', 'avante' },
+			default = { 'lsp', 'path', 'snippets', 'buffer', 'avante' },
 			per_filetype = {
 				lua = { inherit_defaults = true, 'lazydev' },
 				sql = { inherit_defaults = true, 'dadbod' },

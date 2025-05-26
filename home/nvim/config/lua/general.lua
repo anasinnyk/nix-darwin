@@ -59,7 +59,21 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.lsp.enable({ 'luals', 'yamlls', 'rust_analyzer', 'gopls', 'nil' })
+vim.diagnostic.config({
+	virtual_text = true,
+	virtual_lines = {
+		current_line = true,
+	},
+})
+local servers = { 'luals', 'yamlls', 'rust_analyzer', 'gopls', 'nil', 'phpactor' }
+
+for _, name in ipairs(servers) do
+	local cfg = vim.lsp.config[name]
+	local cmd = cfg and cfg.cmd and cfg.cmd[1]
+	if cmd and vim.fn.executable(cmd) == 1 then
+		vim.lsp.enable({ name })
+	end
+end
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -68,13 +82,6 @@ vim.lsp.enable({ 'luals', 'yamlls', 'rust_analyzer', 'gopls', 'nil' })
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Diagnostic keymaps:
-vim.keymap.set("n", "[d", function()
-	vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", function()
-	vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
