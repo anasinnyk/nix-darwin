@@ -59,6 +59,7 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- LSP
 vim.diagnostic.config({
 	virtual_text = true,
 	virtual_lines = {
@@ -74,6 +75,7 @@ for _, name in ipairs(servers) do
 		vim.lsp.enable({ name })
 	end
 end
+vim.keymap.set("n", "grd", vim.lsp.buf.definition, { desc = "[L]SP [D]finition" })
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
