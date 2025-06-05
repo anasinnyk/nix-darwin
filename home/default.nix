@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./wezterm
@@ -15,8 +15,11 @@
     ./firefox
   ];
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;
+  home.activation.linikApps = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    find ~/.nix-profile/Applications/ -name '*.app' -exec ln -sf {} ~/Applications/ \;
+  '';
 
   home.packages = with pkgs; [
     gnupg

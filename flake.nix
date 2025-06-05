@@ -7,7 +7,7 @@
     devenv.url = "github:cachix/devenv/latest";
     home-manager.url = "github:nix-community/home-manager/master";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+    firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin/main";
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -25,8 +25,6 @@
   outputs = inputs@{ self, nix-darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, devenv, ... }:
   let
     user = "andriinasinnyk";
-    system = "aarch64-darwin";
-    localSystem = "aarch64-darwin";
   in
   {
     darwinConfigurations."eel-K90P6X6DYT-MBP" = nix-darwin.lib.darwinSystem {
@@ -44,7 +42,6 @@
               "homebrew/homebrew-bundle" = homebrew-bundle;
             };
             mutableTaps = true;
-            # autoMigrate = true;
           };
         }
         {

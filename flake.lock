@@ -3,16 +3,16 @@
     "brew-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1748148946,
-        "narHash": "sha256-srnyYAqGD27NeBDaEU3hchJdkeOQ2vRe3kWurihFYT8=",
+        "lastModified": 1748658199,
+        "narHash": "sha256-xmI9Bk8zDWgmvJlPpeHZk9yHCZPG5uxZH9VmdEdWCkU=",
         "owner": "Homebrew",
         "repo": "brew",
-        "rev": "dc0f9d50fd170492a33fd7234d06de1b94df363c",
+        "rev": "54c8b127ea2263fbbaf1354e3d8d86025e387ea6",
         "type": "github"
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "4.5.3",
+        "ref": "4.5.4",
         "repo": "brew",
         "type": "github"
       }
@@ -73,15 +73,16 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1748394362,
-        "narHash": "sha256-XDEHo8SjRuGSzGqvGG4iRShLDa8yL65iRM2+hi1bZeQ=",
+        "lastModified": 1748826556,
+        "narHash": "sha256-oOuFgSODvGK21E5FcpszffnfkrcZuPKmviJ7wONcfhU=",
         "owner": "bandithedoge",
         "repo": "nixpkgs-firefox-darwin",
-        "rev": "7d37224d9b7b8e315d37095772ca732df7ea40b6",
+        "rev": "db4a8b9f260bc92904e4042d570537930162f3bc",
         "type": "github"
       },
       "original": {
         "owner": "bandithedoge",
+        "ref": "main",
         "repo": "nixpkgs-firefox-darwin",
         "type": "github"
       }
@@ -176,11 +177,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1748455938,
-        "narHash": "sha256-mQ/iNzPra2WtDQ+x2r5IadcWNr0m3uHvLMzJkXKAG/8=",
+        "lastModified": 1748830238,
+        "narHash": "sha256-EB+LzYHK0D5aqxZiYoPeoZoOzSAs8eqBDxm3R+6wMKU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "02077149e2921014511dac2729ae6dadb4ec50e2",
+        "rev": "c7fdb7e90bff1a51b79c1eed458fb39e6649a82a",
         "type": "github"
       },
       "original": {
@@ -209,11 +210,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1748460295,
-        "narHash": "sha256-g/ldbSYaEEM8epgBIgHjgZOnjbWia4PvGcHhrUGAj4o=",
+        "lastModified": 1748894041,
+        "narHash": "sha256-OQTPgbm3sNY5rsN28XnCP7zYBsUSjzXK7cg2aFxdfjo=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "38cdcc2271a2fea3f10430901dbd7532b0af3d8d",
+        "rev": "a42547f3d7817fdbc5e54550115b9cda3834758d",
         "type": "github"
       },
       "original": {
@@ -225,11 +226,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1748459122,
-        "narHash": "sha256-IcV7tclFt+QKsAJPwzWT/SUmJnxqtWXaUZr4eWgty9M=",
+        "lastModified": 1748892671,
+        "narHash": "sha256-J6A5zm0sttilbCYMEIheCTbHG6A86O9ZWR21pC9uE7A=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "87423dbabb3f8f81755cccd7e829706f44d51625",
+        "rev": "e5555d0ff3e087f98204c5e4bce44cc1e7f1f6d2",
         "type": "github"
       },
       "original": {
@@ -311,11 +312,11 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1748379893,
-        "narHash": "sha256-7zvNSdEA4KhKA3vosAU3QdzGgSBKxTR2iUEredA8tLc=",
+        "lastModified": 1748885738,
+        "narHash": "sha256-fsOHwWowjhajWL5zsWiN5SdeKPNQa0RD3+sQUoH5VgQ=",
         "owner": "zhaofengli-wip",
         "repo": "nix-homebrew",
-        "rev": "77517445732b9ae0b413e4580b1c8e88f804da1c",
+        "rev": "29fe08d458f227200a62e38f5d5eafe625d7fda3",
         "type": "github"
       },
       "original": {
@@ -406,11 +407,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1748460289,
-        "narHash": "sha256-7doLyJBzCllvqX4gszYtmZUToxKvMUrg45EUWaUYmBg=",
+        "lastModified": 1748894770,
+        "narHash": "sha256-jMMyv/7YmdUT7vdT8mm+oCqAt8K4b06kDTLp4JEU+pQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "96ec055edbe5ee227f28cdbc3f1ddf1df5965102",
+        "rev": "8f79c78d1d9073c81d109d0ef46bf6a1bd05877d",
         "type": "github"
       },
       "original": {

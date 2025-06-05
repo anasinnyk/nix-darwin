@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    github-copilot-cli
+    gh-copilot
     github-cli
     gh-dash
     lazygit

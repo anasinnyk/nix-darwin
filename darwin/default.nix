@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
   ];
+  environment.pathsToLink = [ "/Applications" ];
 
   nix = {
     enable = true;
@@ -91,10 +92,8 @@
 
     casks = [
       "1password"
-      "signal"
       "slack"
       "zoom"
-      "loom"
       "orbstack"
       "keycastr"
       "via"

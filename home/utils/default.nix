@@ -16,7 +16,6 @@
     unzip
     neofetch
     httpie
-    thefuck
     tldr
     scc
     duf
