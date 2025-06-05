@@ -157,7 +157,7 @@ vim.keymap.set("n", "<leader>kfb", function()
 	vim.cmd("vnew")
 	vim.cmd("setlocal buftype=nofile")
 	vim.cmd(string.format(
-		"execute 'r !flux build ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\")'",
+		"execute 'r !flux build ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\") --dry-run'",
 		bf, bf, bf))
 	vim.cmd("setlocal filetype=yaml")
 	vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>bd!<CR>", { noremap = true, silent = true })
@@ -168,7 +168,7 @@ vim.keymap.set("n", "<leader>kfd", function()
 	vim.cmd("new")
 	vim.cmd("setlocal buftype=nofile")
 	vim.cmd(string.format(
-		"execute 'r !flux diff ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\")'",
+		"execute 'r !flux diff ks $(cat %s | yq -r \".metadata.name\") --kustomization-file %s --path $(cat %s | yq -r \".spec.path\") --dry-run'",
 		bf, bf, bf))
 	vim.cmd("setlocal filetype=yaml")
 	vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>bd!<CR>", { noremap = true, silent = true })
