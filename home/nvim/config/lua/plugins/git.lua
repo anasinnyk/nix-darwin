@@ -42,6 +42,7 @@ return {
 			{ "<leader>gO", "<cmd>Octo pr list<cr>",         desc = "[G]it [O]cto PR" },
 			{ "<leader>gP", "<cmd>Octo pr view<cr>",         desc = "[G]it [P]ull Request" },
 			{ "<leader>gC", "<cmd>Octo pr create draft<cr>", desc = "[G]it Pull Request [C]reate" },
+			{ "<leader>gR", "<cmd>Octo pr ready<cr>",        desc = "[G]it Pull Request [R]eady" },
 		},
 	},
 	{
