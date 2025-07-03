@@ -36,6 +36,8 @@ return {
 		config = function()
 			require "octo".setup({
 				mappings_disable_default = false,
+				default_merge_method = "squash",
+				default_delete_branch = true,
 			})
 		end,
 		keys = {
