@@ -16,11 +16,13 @@
       "ps" = "procs";
       "wttr" = "curl wttr.in/Kyiv";
     };
-    plugins = [{
-      name = "zsh-vi-mode";
-      src = pkgs.zsh-vi-mode;
-      file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-    }];
+    plugins = [
+      {
+        name = "zsh-vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+    ];
     "oh-my-zsh" = {
       enable = true;
       plugins = [
@@ -29,8 +31,6 @@
         "tmux"
         "cabal"
         "copybuffer"
-        "docker-compose"
-        "docker"
         "direnv"
         "dotenv"
         "encode64"
@@ -50,7 +50,6 @@
         "redis-cli"
         "qrcode"
         "rust"
-        "sudo"
         "terraform"
         "yarn"
         "z"

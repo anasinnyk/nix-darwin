@@ -26,7 +26,8 @@
     _1password-cli
     direnv
     cachix
-    youtube-music
+    # youtube-music
+    gemini-cli
     devenv
   ];
 

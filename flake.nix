@@ -22,39 +22,52 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, devenv, ... }:
-  let
-    user = "andriinasinnyk";
-  in
-  {
-    darwinConfigurations."eel-K90P6X6DYT-MBP" = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs; };
-      modules = [ 
-        home-manager.darwinModules.home-manager
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            inherit user;
-            enable = true;
-            taps = {
-              "homebrew/homebrew-core" = homebrew-core;
-              "homebrew/homebrew-cask" = homebrew-cask;
-              "homebrew/homebrew-bundle" = homebrew-bundle;
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      nix-homebrew,
+      homebrew-bundle,
+      homebrew-core,
+      homebrew-cask,
+      home-manager,
+      nixpkgs,
+      devenv,
+      ...
+    }:
+    let
+      user = "andriinasinnyk";
+    in
+    {
+      darwinConfigurations."eel-K90P6X6DYT-MBP" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              inherit user;
+              enable = true;
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
+              };
+              mutableTaps = true;
             };
-            mutableTaps = true;
-          };
-        }
-        {
-          nixpkgs.overlays = [ inputs.firefox-darwin.overlay ];
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users."${user}" = import ./home;
-          users.users."${user}".home = "/Users/${user}";
-	}
-        ./darwin
-      ];
-    };
+          }
+          {
+            nixpkgs.overlays = [ inputs.firefox-darwin.overlay ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users."${user}" = import ./home;
+            users.users."${user}".home = "/Users/${user}";
+            ids.gids.nixbld = 350;
+          }
+          ./darwin
+        ];
+      };
 
-    darwinPackages = self.darwinConfigurations."eel-K90P6X6DYT-MBP".pkgs;
-  };
+      darwinPackages = self.darwinConfigurations."eel-K90P6X6DYT-MBP".pkgs;
+    };
 }

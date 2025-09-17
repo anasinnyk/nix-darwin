@@ -97,6 +97,7 @@
       "orbstack"
       "keycastr"
       "via"
+      "setapp"
       "claude"
     ];
   };
