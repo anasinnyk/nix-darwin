@@ -85,8 +85,6 @@
     };
   };
 
-
-
   homebrew = {
     enable = true;
 

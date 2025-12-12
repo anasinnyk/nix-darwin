@@ -66,7 +66,7 @@ vim.diagnostic.config({
 		current_line = true,
 	},
 })
-local servers = { 'luals', 'yamlls', 'rust_analyzer', 'gopls', 'nil', 'phpactor' }
+local servers = { 'luals', 'yamlls', 'rust_analyzer', 'gopls', 'nil', 'phpactor', 'ts_ls' }
 
 for _, name in ipairs(servers) do
 	local cfg = vim.lsp.config[name]
