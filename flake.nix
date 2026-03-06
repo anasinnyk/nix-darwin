@@ -4,7 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    devenv.url = "github:cachix/devenv/latest";
+    devenv.url = "github:cachix/devenv/main";
+    devenv.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin/main";
@@ -57,7 +58,12 @@
             };
           }
           {
-            nixpkgs.overlays = [ inputs.firefox-darwin.overlay ];
+            nixpkgs.overlays = [
+              inputs.firefox-darwin.overlay
+              (final: prev: {
+                devenv = inputs.devenv.packages.${prev.system}.default;
+              })
+            ];
             home-manager.useGlobalPkgs = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users."${user}" = import ./home;
