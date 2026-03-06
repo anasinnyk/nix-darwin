@@ -14,7 +14,7 @@
     bat
     whois
     unzip
-    neofetch
+    fastfetch
     httpie
     tldr
     scc
@@ -23,13 +23,12 @@
     procs
     sd
     tre
-    dogdns
+    doggo
     browsh
     buku
     cmus
     khal
     mutt
-    newsboat
     taskwarrior3
     navi
   ];

@@ -13,6 +13,8 @@
         "$rust"
         "$golang"
         "$haskell"
+        "$php"
+        "$python"
         "$line_break"
         "$character"
       ];
@@ -21,7 +23,7 @@
 
       kubernetes = {
         disabled = false;
-      	format = "[$context:$namespace](yellow bold) ";
+        format = "[$context:$namespace](yellow bold) ";
       };
 
       directory = {

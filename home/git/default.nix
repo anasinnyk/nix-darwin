@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    gh-copilot
     github-cli
     gh-dash
     lazygit
@@ -29,7 +28,7 @@
         colormoved = "zebra";
       };
       alias = {
-        huyak = "git add . && git commit --amend --no-edit && git push -f";
+        huyak = "!git add . && git commit --amend --no-edit && git push -f";
       };
     };
   };

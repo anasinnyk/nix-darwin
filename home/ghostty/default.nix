@@ -1,14 +1,13 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  home.file.".config/ghostty/config".text = builtins.readFile ./config;
-
   programs.ghostty = {
-    enable = false; # switch when darwin will be fix
+    enable = true;
+    package = pkgs.ghostty-bin;
     enableZshIntegration = true;
     installVimSyntax = true;
     settings = {
       font-family = "JetBrains Mono";
-      theme = "GruvboxDark";
+      theme = "Gruvbox Dark";
       macos-titlebar-style = "hidden";
       command = "/bin/zsh -l -c tmux attach 2> /dev/null || tmux";
       mouse-hide-while-typing = true;

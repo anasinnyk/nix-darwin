@@ -13,9 +13,11 @@
     ./nvim
     ./languages
     ./firefox
+    ./opencode
+    ./discord
   ];
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
   home.enableNixpkgsReleaseCheck = false;
   home.activation.linikApps = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     find ~/.nix-profile/Applications/ -name '*.app' -exec ln -sf {} ~/Applications/ \;
@@ -26,8 +28,6 @@
     _1password-cli
     direnv
     cachix
-    # youtube-music
-    gemini-cli
     devenv
   ];
 

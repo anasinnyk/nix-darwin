@@ -61,6 +61,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users."${user}" = import ./home;
+            home-manager.backupFileExtension = "backup";
             users.users."${user}".home = "/Users/${user}";
             ids.gids.nixbld = 350;
           }
