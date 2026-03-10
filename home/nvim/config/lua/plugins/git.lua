@@ -64,4 +64,13 @@ return {
 		},
 	},
 	{ "sindrets/diffview.nvim" },
+	{
+		"ksaito422/remote-line.nvim",
+		config = function()
+			require("remote-line").setup({})
+		end,
+		keys = {
+			{ "<leader>gl", "<cmd>RemoteLine<cr>", desc = "[G]it copy remote [l]ine" },
+		}
+	}
 }
