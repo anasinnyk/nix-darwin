@@ -26,8 +26,46 @@
         fi
       }
 
+      rename_tmux_on_exec() {
+        if [[ -n "$TMUX" ]]; then
+          local cmd="''${1%% *}"
+          local window_title
+
+          case "$cmd" in
+            nvim|vim|vi) window_title="" ;;
+            git)         window_title="󰊢" ;;
+            docker)      window_title="󰡨" ;;
+            kubectl|k|k9s) window_title="󱃾" ;;
+            ssh)         window_title="󰣀" ;;
+            *)           window_title="$cmd" ;;
+          esac
+
+          if [[ -n "$DEVENV_STATE" ]]; then
+            tmux rename-window "󰵮 $window_title"
+          else
+            tmux rename-window "$window_title"
+          fi
+        fi
+      }
+
+      reload_devenv_completions() {
+        if [[ "$DEVENV_STATE" != "$_CURRENT_DEVENV_STATE" ]]; then
+          export _CURRENT_DEVENV_STATE="$DEVENV_STATE"
+
+          if [[ -n "$DEVENV_PROFILE" ]]; then
+            typeset -U fpath
+            fpath=("$DEVENV_PROFILE/share/zsh/site-functions" $fpath)
+          fi
+
+          autoload -Uz compinit
+          compinit -D 2>/dev/null
+        fi
+      }
+
       autoload -Uz add-zsh-hook
       add-zsh-hook precmd strip_devenv_prefix
+      add-zsh-hook preexec rename_tmux_on_exec
+      add-zsh-hook precmd reload_devenv_completions
     '';
     shellAliases = {
       "ls" = "eza --icons -l -T -L=1";
