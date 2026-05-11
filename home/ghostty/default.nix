@@ -6,7 +6,7 @@
     enableZshIntegration = true;
     installVimSyntax = true;
     settings = {
-      font-family = "JetBrains Mono";
+      font-family = "Fira Code";
       theme = "Gruvbox Dark";
       macos-titlebar-style = "hidden";
       command = "/bin/zsh -l -c tmux attach 2> /dev/null || tmux";

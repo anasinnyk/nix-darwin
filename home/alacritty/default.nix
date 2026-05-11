@@ -7,7 +7,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      import = ["${pkgs.alacritty-theme}/gruvbox_material_medium_light.toml"];
+      import = [ "${pkgs.alacritty-theme}/gruvbox_material_medium_light.toml" ];
       window = {
         padding = {
           x = 18;
@@ -23,7 +23,7 @@
       };
       font = {
         normal = {
-          family = "JetBrainsMono Nerd Font";
+          family = "Fira Code";
           style = "Regular";
         };
         size = 14.0;
@@ -31,7 +31,11 @@
       bell.duration = 0;
       shell = {
         program = "/bin/zsh";
-        args = ["-l" "-c" "tmux attach 2> /dev/null || tmux"];
+        args = [
+          "-l"
+          "-c"
+          "tmux attach 2> /dev/null || tmux"
+        ];
       };
     };
   };

@@ -3,6 +3,7 @@
   imports = [
     ./wezterm
     ./ghostty
+    ./kitty
     ./alacritty
     ./zsh
     ./tmux
@@ -13,11 +14,12 @@
     ./nvim
     ./languages
     ./firefox
+    ./google-chrome
     ./opencode
     ./discord
   ];
 
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
   home.enableNixpkgsReleaseCheck = false;
   home.activation.linikApps = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     find ~/.nix-profile/Applications/ -name '*.app' -exec ln -sf {} ~/Applications/ \;
@@ -26,19 +28,17 @@
   home.packages = with pkgs; [
     gnupg
     _1password-cli
-    direnv
+    _1password-gui
+    slack
+    zoom-us
+    claude-code
+    keycastr
     cachix
     devenv
   ];
 
-  home.file.".config/direnv/direnv.toml".text = ''
-    [global]
-    log_filter="^$"
-  '';
-
   home.sessionVariables = {
     EDITOR = "nvim";
-    DIRENV_LOG_FORMAT = "";
   };
 
   programs = {

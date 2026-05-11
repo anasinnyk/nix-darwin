@@ -4,33 +4,16 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    devenv.url = "github:cachix/devenv/main";
+    devenv.url = "github:cachix/devenv";
     devenv.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin/main";
-    homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
   };
 
   outputs =
     inputs@{
       self,
       nix-darwin,
-      nix-homebrew,
-      homebrew-bundle,
-      homebrew-core,
-      homebrew-cask,
       home-manager,
       nixpkgs,
       devenv,
@@ -44,24 +27,11 @@
         specialArgs = { inherit inputs; };
         modules = [
           home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              inherit user;
-              enable = true;
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-                "homebrew/homebrew-bundle" = homebrew-bundle;
-              };
-              mutableTaps = true;
-            };
-          }
           {
             nixpkgs.overlays = [
               inputs.firefox-darwin.overlay
               (final: prev: {
-                devenv = inputs.devenv.packages.${prev.system}.default;
+                devenv = inputs.devenv.packages.${prev.stdenv.hostPlatform.system}.default;
               })
             ];
             home-manager.useGlobalPkgs = true;

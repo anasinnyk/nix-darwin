@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  environment.systemPackages = with pkgs; [
-  ];
   environment.pathsToLink = [ "/Applications" ];
+
+  system = {
+    primaryUser = "andriinasinnyk";
+    stateVersion = 6;
+  };
 
   nix = {
     enable = true;
@@ -12,21 +15,19 @@
         "root"
         "andriinasinnyk"
       ];
-      extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
-      extra-substituters = "https://devenv.cachix.org";
     };
   };
 
-  programs.zsh.enable = true;
-  programs.ssh.extraConfig = ''
-    Host *
-      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    Host github.com
-      AddKeysToAgent yes
-      UseKeychain yes
-  '';
-  system.stateVersion = 4;
-  system.primaryUser = "andriinasinnyk";
+  programs = {
+    zsh.enable = true;
+    ssh.extraConfig = ''
+      Host *
+        IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+      Host github.com
+        AddKeysToAgent yes
+        UseKeychain yes
+    '';
+  };
 
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
@@ -75,6 +76,7 @@
         yabai -m rule --add app="^System Settings$" manage=off
         yabai -m rule --add app="^Archive Utility$" manage=off
         yabai -m rule --add app="^1Password$" manage=off
+        yabai -m rule --add app="^QuickTime Player$" manage=off
 
         echo "yabai configuration loaded.."
       '';
@@ -83,20 +85,5 @@
       enable = true;
       skhdConfig = builtins.readFile ./skhdrc;
     };
-  };
-
-  homebrew = {
-    enable = true;
-
-    casks = [
-      "1password"
-      "slack"
-      "zoom"
-      "orbstack"
-      "keycastr"
-      "via"
-      "setapp"
-      "claude"
-    ];
   };
 }
