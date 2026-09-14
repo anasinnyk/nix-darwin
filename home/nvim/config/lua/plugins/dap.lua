@@ -5,14 +5,66 @@ return {
 			'leoluz/nvim-dap-go',
 			'theHamsta/nvim-dap-virtual-text',
 			'rcarriga/nvim-dap-ui',
-			'nvim-neotest/nvim-nio'
+			'nvim-neotest/nvim-nio',
 		},
 		config = function()
 			local dap = require('dap')
+
+			local function setup_node_dap()
+				local js_debug = vim.fn.exepath('js-debug')
+
+				if js_debug == '' then
+					js_debug = vim.fn.exepath('js-debug-adapter')
+				end
+
+				if js_debug == '' then
+					return
+				end
+
+				dap.adapters['pwa-node'] = {
+					type = 'server',
+					host = 'localhost',
+					port = '${port}',
+					executable = {
+						command = js_debug,
+						args = { '${port}' },
+						options = {
+							detached = false,
+						},
+					},
+				}
+
+				for _, language in ipairs({
+					'typescript',
+					'javascript',
+					'typescriptreact',
+					'javascriptreact',
+				}) do
+					dap.configurations[language] = {
+						{
+							type = 'pwa-node',
+							request = 'attach',
+							name = 'Attach to Node 9229',
+							address = 'localhost',
+							port = 9229,
+							cwd = '${workspaceFolder}',
+							sourceMaps = true,
+							autoAttachChildProcesses = true,
+							skipFiles = {
+								'<node_internals>/**',
+								'**/node_modules/**',
+							},
+						},
+					}
+				end
+			end
+
 			local ui = require('dapui')
 			ui.setup()
 			require('nvim-dap-virtual-text').setup()
 			require('dap-go').setup()
+			setup_node_dap()
+
 			vim.keymap.set('n', '<leader>du', require('dapui').toggle, { desc = 'Toggle DAP UI' })
 			vim.keymap.set('n', '<leader>dU', require('dap').repl.toggle, { desc = 'Toggle DAP REPL' })
 			vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint, { desc = 'Toggle DAP Breakpoint' })

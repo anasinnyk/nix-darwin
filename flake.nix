@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    devenv.url = "github:cachix/devenv";
-    devenv.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin/main";
   };
@@ -16,7 +14,6 @@
       nix-darwin,
       home-manager,
       nixpkgs,
-      devenv,
       ...
     }:
     let
@@ -30,9 +27,6 @@
           {
             nixpkgs.overlays = [
               inputs.firefox-darwin.overlay
-              (final: prev: {
-                devenv = inputs.devenv.packages.${prev.stdenv.hostPlatform.system}.default;
-              })
             ];
             home-manager.useGlobalPkgs = true;
             home-manager.extraSpecialArgs = { inherit inputs; };

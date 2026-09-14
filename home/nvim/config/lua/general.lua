@@ -173,3 +173,39 @@ vim.keymap.set("n", "<leader>kfd", function()
 	vim.cmd("setlocal filetype=yaml")
 	vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>bd!<CR>", { noremap = true, silent = true })
 end, { desc = "[K]ustomize [F]lux [D]iff" })
+
+vim.keymap.set('n', 'gd', function()
+	vim.lsp.buf.definition({
+		on_list = function(options)
+			local items = options.items
+			if #items > 1 then
+				local unique = {}
+				local seen = {}
+				for _, item in ipairs(items) do
+					local key = string.format("%s:%d:%d", item.filename, item.lnum, item.col)
+					if not seen[key] then
+						seen[key] = true
+						table.insert(unique, item)
+					end
+				end
+				items = unique
+			end
+
+			if #items == 1 then
+				local target = items[1]
+				local bufnr = vim.fn.bufadd(target.filename)
+				---@diagnostic disable-next-line: missing-fields
+				vim.lsp.util.show_document({
+					bufnr = bufnr,
+					range = {
+						start = { line = target.lnum - 1, character = target.col - 1 },
+						["end"] = { line = target.lnum - 1, character = target.col - 1 },
+					}
+				}, "utf-8", { focus = true })
+			else
+				vim.fn.setqflist({}, ' ', { title = options.title, items = items })
+				vim.cmd("copen")
+			end
+		end,
+	})
+end, { desc = "LSP Go to definition (Deduplicated & Clean)" })

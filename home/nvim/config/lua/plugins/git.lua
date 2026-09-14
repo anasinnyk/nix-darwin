@@ -33,13 +33,11 @@ return {
 			'nvim-lua/plenary.nvim',
 			'nvim-telescope/telescope.nvim',
 		},
-		config = function()
-			require "octo".setup({
-				mappings_disable_default = false,
-				default_merge_method = "squash",
-				default_delete_branch = true,
-			})
-		end,
+		opts = {
+			mappings_disable_default = false,
+			default_merge_method = "squash",
+			default_delete_branch = true,
+		},
 		keys = {
 			{ "<leader>gO", "<cmd>Octo pr list<cr>",         desc = "[G]it [O]cto PR" },
 			{ "<leader>gP", "<cmd>Octo pr view<cr>",         desc = "[G]it [P]ull Request" },

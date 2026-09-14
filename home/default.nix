@@ -17,6 +17,8 @@
     ./google-chrome
     ./opencode
     ./discord
+    ./pi
+    ./herdr
   ];
 
   home.stateVersion = "26.05";
@@ -32,9 +34,12 @@
     slack
     zoom-us
     claude-code
+    pritunl-client
     keycastr
     cachix
     devenv
+    herdr
+    pi-coding-agent
   ];
 
   home.sessionVariables = {
