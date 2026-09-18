@@ -31,33 +31,61 @@
           "prefix+l"
           "ctrl+alt+l"
         ];
+        swap_pane_left = [
+          "ctrl+alt+shift+h"
+        ];
+        swap_pane_down = [
+          "ctrl+alt+shift+j"
+        ];
+        swap_pane_up = [
+          "ctrl+alt+shift+k"
+        ];
+        swap_pane_right = [
+          "ctrl+alt+shift+l"
+        ];
         previous_workspace = [
-          "prefix+shift+p"
-          "ctrl+alt+shift+["
+          "prefix+["
+          "ctrl+alt+["
         ];
         next_workspace = [
-          "prefix+shift+n"
-          "ctrl+alt+shift+]"
+          "prefix+]"
+          "ctrl+alt+]"
         ];
         new_workspace = [
           "prefix+shift+c"
           "ctrl+alt+shift+c"
         ];
+        close_workspace = [
+          "prefix+shift+x"
+          "ctrl+alt+shift+x"
+        ];
+        rename_workspace = [
+          "prefix+shift+t"
+          "ctrl+alt+shift+t"
+        ];
         previous_tab = [
-          "prefix+p"
-          "ctrl+alt+["
+          "prefix+,"
+          "ctrl+alt+,"
         ];
         next_tab = [
-          "prefix+n"
-          "ctrl+alt+]"
+          "prefix+."
+          "ctrl+alt+."
+        ];
+        move_tab_previous = [
+          "prefix+shift+,"
+          "ctrl+alt+shift+,"
+        ];
+        move_tab_next = [
+          "prefix+shift+."
+          "ctrl+alt+shift+."
         ];
         new_tab = [
           "prefix+c"
           "ctrl+alt+c"
         ];
         close_tab = [
-          "prefix+shift+x"
-          "ctrl+alt+shift+x"
+          "prefix+x"
+          "ctrl+alt+x"
         ];
         rename_tab = [
           "prefix+t"
@@ -88,8 +116,8 @@
           "ctrl+alt+minus"
         ];
         close_pane = [
-          "prefix+x"
-          "ctrl+alt+x"
+          "prefix+d"
+          "ctrl+alt+d"
         ];
         zoom = [
           "prefix+z"
